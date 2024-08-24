@@ -1,3 +1,5 @@
 <template>
-  <NuxtPage />
+  <a-extract-style>
+    <NuxtPage />
+  </a-extract-style>
 </template>
