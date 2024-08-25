@@ -1,10 +1,17 @@
 <script setup lang="ts">
+const access = useCookie('access', {
+  // secure: true,
+});
 
+const sign = () => {
+  // TODO: sign api 처리
+  access.value = 'abc';
+}
 </script>
 
 <template>
   <a-flex justify="center" algin="center" style="width: 100dvw; height: 100dvh;">
-    <a-form style="margin: auto;">
+    <a-form style="margin: auto;" @submit.prevent="sign">
       <a-flex justify="center" style="margin-bottom: 20px;">
         <a-typography-title :level="1">LOGIN</a-typography-title>
       </a-flex>
@@ -15,7 +22,7 @@
         <a-input name="password" />
       </a-form-item>
       <a-flex justify="end" style="margin-top: 20px;">
-        <a-button type="primary">SIGN</a-button>
+        <a-button type="primary" html-type="submit">SIGN</a-button>
       </a-flex>
     </a-form>
   </a-flex>

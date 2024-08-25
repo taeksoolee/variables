@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import type { Variable } from '~/interface';
 
+definePageMeta({
+  middleware: [
+    'auth',
+  ],
+});
+
 const variable = await useFetch<Variable[]>('/api/variables').then(res => res.data);
 </script>
 
