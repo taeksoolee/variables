@@ -1,61 +1,47 @@
 <script setup lang="ts">
-import type { Todo } from '~/interface';
-
-const todos = await useFetch<Todo[]>('/api/todos').then(res => res.data);
-
-const handleClick = () => {
-  message.error('Hello World');
-}
+const data = [
+  {
+    title: 'Variables',
+    link: '/variables',
+    description: 'Variable Management Application',
+  },
+];
 </script>
 
 <template>
-  <a-space direction="vertical" style="width: 100%;">
-    <a-space align="baseline">
-      <a-typography-title :level="1">Variables</a-typography-title>
-      
-      <a-button type="link" shape="circle">
-        <template #icon>
-          <NuxtLink href="/create">
-            <PlusCircleOutlined style="font-size: 20px;"/>
-          </NuxtLink>
-        </template>
-      </a-button>
-    </a-space>
+  <a-flex justify="center" align="center" style="width: 100dvw; height: 100dvh;">
+    <a-flex vertical justify="center">
+      <a-flex justify="space-between" align="center">
+        <a-typography-title :level="1">Home</a-typography-title>
 
-    <a-row :gutter="[16, 16]">
-      <template v-for="item in todos" :key="item.id">
-        <a-col :xs="12" :lg="8">
-          <a-card :title="item.title">
-            <template #extra>
-              <a-dropdown trigger="click">
-                <a-button type="text" shape="circle">
+        <NuxtLink href="/login">
+          <a-button type="link" size="large">
+            <template #icon>
+              <LoginOutlined />
+            </template>
+          </a-button>
+        </NuxtLink>
+      </a-flex>
+      <a-list bordered :data-source="data" style="width: 500px;">
+        <template #renderItem="{ item }">
+          <a-list-item>
+            <a-list-item-meta :description="item.description">
+              <template #title>
+                {{ item.title }}
+              </template>
+            </a-list-item-meta>
+            <template #actions>
+              <NuxtLink :href="item.link">
+                <a-button type="link">
                   <template #icon>
-                    <MoreOutlined style="font-size: 16px;" />
+                    <LinkOutlined />
                   </template>
                 </a-button>
-                <template #overlay>
-                  <a-menu>
-                    <a-menu-item key="0">
-                      <NuxtLink>
-                        1st menu item
-                      </NuxtLink>
-                    </a-menu-item>
-                    <a-menu-item key="1">
-                      <NuxtLink>
-                        2nd menu item
-                      </NuxtLink>
-                    </a-menu-item>
-                    <a-menu-divider />
-                    <a-menu-item key="3" disabled>3rd menu item（disabled）</a-menu-item>
-                  </a-menu>
-                </template>
-              </a-dropdown>
+              </NuxtLink>
             </template>
-            <a-typography-text>{{ item.description }}</a-typography-text>
-          </a-card>
-        </a-col>
-      </template>
-    </a-row>
-  </a-space>
-  
+          </a-list-item>
+        </template>
+      </a-list>
+    </a-flex>
+  </a-flex>
 </template>
