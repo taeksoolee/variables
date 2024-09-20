@@ -5,7 +5,13 @@ const access = useCookie('access', {
 
 const sign = () => {
   // TODO: sign api 처리
-  access.value = 'abc';
+  $fetch('/api/auth/sign', {
+    method: 'POST',
+    body: {
+      email: 'leets1490@gmail.com',
+      password: 'test',
+    },
+  });
 }
 </script>
 

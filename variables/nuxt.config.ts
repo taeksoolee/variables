@@ -4,6 +4,11 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@ant-design-vue/nuxt'],
   css: ['ant-design-vue/dist/reset.css'],
+  hooks: {
+    ready: () => {
+      process.env.TZ = 'UTC';
+    }
+  },
   build: {
     transpile: ['@ant-design-vue']
   },
